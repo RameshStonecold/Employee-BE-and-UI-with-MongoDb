@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Employee-BE/Employee-BE.iml" filepath="$PROJECT_DIR$/Employee-BE/Employee-BE.iml" />
       <module fileurl="file://$PROJECT_DIR$/Employee-BE-and-UI-with-MongoDb.iml" filepath="$PROJECT_DIR$/Employee-BE-and-UI-with-MongoDb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Employee-UI/Employee-UI.iml" filepath="$PROJECT_DIR$/Employee-UI/Employee-UI.iml" />
     </modules>
   </component>
 </project>
