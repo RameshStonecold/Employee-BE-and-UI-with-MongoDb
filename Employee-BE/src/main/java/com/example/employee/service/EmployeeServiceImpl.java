@@ -8,6 +8,7 @@ import com.example.employee.model.dto.EmployeeDtoConverter;
 import com.example.employee.repository.EmployeeRepo;
 import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class EmployeeServiceImpl implements IEmpService {
 
     @Autowired
     private EmployeeRepo employeeRepo;
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Override
     public Either<Exception, EmployeeDto> getById(String id) {
@@ -37,8 +40,13 @@ public class EmployeeServiceImpl implements IEmpService {
               empDtoListToEmpBeanList(this.findAllEmps());
         Employee employee = EmployeeDtoConverter.getInstance().empDtoToempBean(employeeDto);
 
+        String encryptedPass= encoder.encode(employee.getEmployeeState().getPassword());
+        employee.getEmployeeState().setPassword(encryptedPass);
+
+
       if (oldEmployeeList.isEmpty()){
           EmployeeState employeeState = employee.create(employee);
+
          employeeRepo.saveEmployee(employeeState);
          return Either.right(employeeState.getId());
       }

@@ -33,8 +33,7 @@ public class EmployeeList  {
                       compareTo(employeeState.getId())==0 ).findAny();
      if (!employeeOptional.isPresent())
      {
-         EmployeeState employeeState1 =employeeOptional.get().create(employeeOptional.get());
-         return Either.right(employeeState1);
+         return Either.right(employeeState);
      }
       return Either.left(new Exception("Employee already exist"));
 

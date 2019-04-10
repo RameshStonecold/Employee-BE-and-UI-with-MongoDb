@@ -1,5 +1,7 @@
 package com.example.employee;
 
+import com.example.employee.config.ResponseWithError;
+import com.example.employee.controller.EmployeeController;
 import com.example.employee.model.dto.EmployeeDto;
 import com.example.employee.service.IEmpService;
 import io.vavr.control.Either;
@@ -19,16 +21,20 @@ public class EmployeeIT {
     @Autowired
     private IEmpService empService;
 
+    @Autowired
+    private EmployeeController employeeController;
+
+
     @Test
     public void createEmployeeTest(){
 
         EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId("12345");
-        employeeDto.setUsername("Duryodhana12");
+        employeeDto.setId("22345");
+        employeeDto.setUsername("Dronacharya");
         employeeDto.setPassword("password");
-        employeeDto.setEmailId("duryodhana@gmail.com");
-        employeeDto.setMobileNo("9179170688");
-        employeeDto.setAge("30");
+        employeeDto.setEmailId("dronacharya@gmail.com");
+        employeeDto.setMobileNo("6179170688");
+        employeeDto.setAge("25");
 
        Either either= empService.createEmployee(employeeDto);
 
@@ -37,7 +43,8 @@ public class EmployeeIT {
 
     @Test
     public void getEmpById(){
-        String id ="";
+        String id ="12345";
+        ResponseWithError error= employeeController.getById(id);
       Assert.assertNotNull(empService.getById(id));
     }
 
