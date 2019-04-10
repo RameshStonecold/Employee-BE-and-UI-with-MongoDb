@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class EmployeeServiceImpl implements IEmpService {
 
@@ -30,19 +33,25 @@ public class EmployeeServiceImpl implements IEmpService {
     @Override
     public Either<Exception, String> createEmployee(EmployeeDto employeeDto) {
 
-         List<Employee> oldEmployeeList=  EmployeeDtoConverter.getInstance().
+         List<Employee> oldEmployeeList = EmployeeDtoConverter.getInstance().
               empDtoListToEmpBeanList(this.findAllEmps());
-
         Employee employee = EmployeeDtoConverter.getInstance().empDtoToempBean(employeeDto);
 
       if (oldEmployeeList.isEmpty()){
           EmployeeState employeeState = employee.create(employee);
          employeeRepo.saveEmployee(employeeState);
+         return Either.right(employeeState.getId());
       }
-        EmployeeList employeeList = new EmployeeList(oldEmployeeList);
-       Either empEither= employeeList.createEmployee(employee);
-       if (empEither.isRight()){
 
+      Optional<Employee> employeeOptional = oldEmployeeList.
+              stream().filter(x->x.getEmployeeState().getId().equals(employeeDto.getId())).findAny();
+
+        if(employeeOptional.isPresent()){
+            return Either.left(new Exception("Employee already registered"));
+        }
+        EmployeeList employeeList = new EmployeeList(oldEmployeeList);
+       Either empEither= employeeList.createEmployee(employee.getEmployeeState());
+       if (empEither.isRight()){
            employeeRepo.saveEmployee((EmployeeState) empEither.get());
            return Either.right(((EmployeeState) empEither.get()).getId());
        }

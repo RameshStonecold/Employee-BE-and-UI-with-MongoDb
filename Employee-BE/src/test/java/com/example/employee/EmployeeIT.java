@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EmployeeIT {
@@ -21,16 +23,16 @@ public class EmployeeIT {
     public void createEmployeeTest(){
 
         EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId("1234");
-        employeeDto.setUsername("Ramesh123");
+        employeeDto.setId("12345");
+        employeeDto.setUsername("Duryodhana12");
         employeeDto.setPassword("password");
-        employeeDto.setEmailId("rameshshaka@gmail.com");
-        employeeDto.setMobileNo("8179170688");
-        employeeDto.setAge("25");
+        employeeDto.setEmailId("duryodhana@gmail.com");
+        employeeDto.setMobileNo("9179170688");
+        employeeDto.setAge("30");
 
        Either either= empService.createEmployee(employeeDto);
 
-        Assert.assertTrue(either.isRight());
+        Assert.assertEquals(true,either.isRight());
     }
 
     @Test
@@ -38,5 +40,17 @@ public class EmployeeIT {
         String id ="";
       Assert.assertNotNull(empService.getById(id));
     }
+
+
+    @Test
+    public void getAllEmpsTest(){
+
+       List<EmployeeDto> employeeDtoList= empService.findAllEmps();
+
+       Assert.assertNotNull(employeeDtoList);
+    }
+
+
+
 
 }
