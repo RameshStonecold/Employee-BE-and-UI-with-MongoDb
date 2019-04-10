@@ -29,10 +29,13 @@ public class EmployeeDtoConverter {
 
 
     public EmployeeDto empBeanToEmpDto(Employee employee){
+
+        EmployeeState employeeState = new EmployeeState();
+
         EmployeeDto employeeDto = new EmployeeDto();
 
         if (employee!=null){
-            BeanUtils.copyProperties(employee,employeeDto);
+            BeanUtils.copyProperties(employee.getEmployeeState(),employeeDto);
         }
         return employeeDto;
     }
@@ -45,6 +48,7 @@ public class EmployeeDtoConverter {
         if (employeeList!=null){
 
             employeeList.forEach(x->employeeDtoList.add(empBeanToEmpDto(x)));
+
         }
         return employeeDtoList;
     }

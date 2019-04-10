@@ -15,26 +15,26 @@ public class EmployeeList  {
 
 
 
-  public Either<Exception,EmployeeState> createEmployee(Employee employee){
+  public Either<Exception,EmployeeState> createEmployee(EmployeeState employeeState){
 
      if (this.employeeList.stream().anyMatch(x->x.getEmployeeState().getEmailId()
-             .equalsIgnoreCase(employee.getEmployeeState().getEmailId())))
+             .equalsIgnoreCase(employeeState.getEmailId())))
      {
          return Either.left(new Exception("Employee Email Id already registered"));
      }
 
      if (this.employeeList.stream().anyMatch(x->x.getEmployeeState().getMobileNo().
-             compareTo(employee.getEmployeeState().getMobileNo())==0)){
+             compareTo(employeeState.getMobileNo())==0)){
          return Either.left(new Exception("Employee Mobile Number already registered "));
      }
 
       Optional<Employee> employeeOptional= this.employeeList.stream().
               filter(x->x.getEmployeeState().getId().
-                      compareTo(employee.getEmployeeState().getId())==0 ).findAny();
+                      compareTo(employeeState.getId())==0 ).findAny();
      if (!employeeOptional.isPresent())
      {
-         EmployeeState employeeState =employeeOptional.get().create(employee);
-         return Either.right(employeeState);
+         EmployeeState employeeState1 =employeeOptional.get().create(employeeOptional.get());
+         return Either.right(employeeState1);
      }
       return Either.left(new Exception("Employee already exist"));
 
