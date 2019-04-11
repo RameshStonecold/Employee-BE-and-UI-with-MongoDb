@@ -6,14 +6,15 @@ import com.example.employee.model.EmployeeState;
 import com.example.employee.model.dto.EmployeeDto;
 import com.example.employee.model.dto.EmployeeDtoConverter;
 import com.example.employee.repository.EmployeeRepo;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements IEmpService {
@@ -26,11 +27,15 @@ public class EmployeeServiceImpl implements IEmpService {
     @Override
     public Either<Exception, EmployeeDto> getById(String id) {
 
-        Either empEither = employeeRepo.getById(id);
-        if (empEither.isLeft()){
-            return Either.left(new Exception("Employee not found"));
-        }
-         return Either.right(EmployeeDtoConverter.getInstance().empBeanToEmpDto((Employee) empEither.get()));
+        Employee employee = employeeRepo.getById(id);
+
+       EmployeeDto employeeDto= EmployeeDtoConverter.getInstance().empBeanToEmpDto(employee);
+
+       if (employeeDto==null){
+
+           return Either.left(new Exception("Employee not found"));
+       }
+         return Either.right(employeeDto);
     }
 
     @Override
@@ -39,21 +44,17 @@ public class EmployeeServiceImpl implements IEmpService {
          List<Employee> oldEmployeeList = EmployeeDtoConverter.getInstance().
               empDtoListToEmpBeanList(this.findAllEmps());
         Employee employee = EmployeeDtoConverter.getInstance().empDtoToempBean(employeeDto);
-
         String encryptedPass= encoder.encode(employee.getEmployeeState().getPassword());
         employee.getEmployeeState().setPassword(encryptedPass);
 
 
       if (oldEmployeeList.isEmpty()){
           EmployeeState employeeState = employee.create(employee);
-
          employeeRepo.saveEmployee(employeeState);
          return Either.right(employeeState.getId());
       }
-
       Optional<Employee> employeeOptional = oldEmployeeList.
               stream().filter(x->x.getEmployeeState().getId().equals(employeeDto.getId())).findAny();
-
         if(employeeOptional.isPresent()){
             return Either.left(new Exception("Employee already registered"));
         }
