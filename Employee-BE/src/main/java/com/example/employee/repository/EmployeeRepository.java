@@ -30,7 +30,6 @@ public class EmployeeRepository implements EmployeeRepo {
 
       List<Employee> allEmps=  employeeJPARepository.findAll().
               stream().map(x-> new Employee(x)).collect(Collectors.toList());
-
         return EmployeeDtoConverter.getInstance().empBeanListToEmpDtoList(allEmps);
     }
 

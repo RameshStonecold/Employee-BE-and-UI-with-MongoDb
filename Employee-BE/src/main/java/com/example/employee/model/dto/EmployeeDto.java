@@ -1,5 +1,8 @@
 package com.example.employee.model.dto;
 
+
+import java.util.Objects;
+
 public class EmployeeDto {
     private String id;
     private String username;
@@ -7,6 +10,7 @@ public class EmployeeDto {
     private String emailId;
     private String mobileNo;
     private String age;
+    private AddressDto addressDto;
 
     public String getId() {
         return id;
@@ -54,5 +58,29 @@ public class EmployeeDto {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public AddressDto getAddressDto() { return addressDto; }
+
+    public void setAddressDto(AddressDto addressDto) { this.addressDto = addressDto; }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeDto that = (EmployeeDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(username, that.username) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(emailId, that.emailId) &&
+                Objects.equals(mobileNo, that.mobileNo) &&
+                Objects.equals(age, that.age) &&
+                Objects.equals(addressDto, that.addressDto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, emailId, mobileNo, age, addressDto);
     }
 }

@@ -12,6 +12,6 @@ public interface IEmpService {
 
      Either<Exception,String> createEmployee(EmployeeDto employeeDto);
 
-     List<EmployeeDto> findAllEmps();
+   List<EmployeeDto> findAllEmps();
 
 }

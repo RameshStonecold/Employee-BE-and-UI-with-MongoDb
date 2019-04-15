@@ -20,12 +20,12 @@ public class EmployeeList  {
      if (this.employeeList.stream().anyMatch(x->x.getEmployeeState().getEmailId()
              .equalsIgnoreCase(employeeState.getEmailId())))
      {
-         return Either.left(new Exception("Employee Email Id already registered"));
+         return Either.left(new Exception("Email Id already exist"));
      }
 
      if (this.employeeList.stream().anyMatch(x->x.getEmployeeState().getMobileNo().
              compareTo(employeeState.getMobileNo())==0)){
-         return Either.left(new Exception("Employee Mobile Number already registered "));
+         return Either.left(new Exception("Mobile Number already exist"));
      }
 
       Optional<Employee> employeeOptional= this.employeeList.stream().
@@ -35,8 +35,12 @@ public class EmployeeList  {
      {
          return Either.right(employeeState);
      }
-      return Either.left(new Exception("Employee already exist"));
-
+      return Either.left(new Exception("Employee already registered"));
   }
+
+
+
+
+
 
 }

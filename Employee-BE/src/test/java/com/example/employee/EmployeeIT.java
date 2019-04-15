@@ -1,8 +1,6 @@
 package com.example.employee;
 
-import com.example.employee.config.ResponseWithError;
 import com.example.employee.controller.EmployeeController;
-import com.example.employee.model.EmployeeState;
 import com.example.employee.model.dto.EmployeeDto;
 import com.example.employee.service.IEmpService;
 import io.vavr.control.Either;
@@ -44,22 +42,19 @@ public class EmployeeIT {
 
     @Test
     public void getEmpById(){
-
-
         String id ="1234";
-
        Either either= empService.getById(id);
       Assert.assertNotNull(either.get());
     }
 
 
-    @Test
+ /*   @Test
     public void getAllEmpsTest(){
 
        List<EmployeeDto> employeeDtoList= empService.findAllEmps();
 
        Assert.assertNotNull(employeeDtoList);
-    }
+    }*/
 
 
 

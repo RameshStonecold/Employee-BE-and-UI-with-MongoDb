@@ -17,14 +17,14 @@ public class Employee {
     }
 
     public EmployeeState create(Employee employee){
-        this.employeeState.setId(employee.getEmployeeState().getId());
-        this.employeeState.setUsername(employee.getEmployeeState().getUsername());
-        this.employeeState.setPassword(employee.getEmployeeState().getPassword());
-        this.employeeState.setEmailId(employee.getEmployeeState().getEmailId());
-        this.employeeState.setAge(employee.getEmployeeState().getAge());
-        this.employeeState.setMobileNo(employee.getEmployeeState().getMobileNo());
+        this.employeeState.setId(employee.employeeState.getId());
+        this.employeeState.setUsername(employee.employeeState.getUsername());
+        this.employeeState.setPassword(employee.employeeState.getPassword());
+        this.employeeState.setEmailId(employee.employeeState.getEmailId());
+        this.employeeState.setAge(employee.employeeState.getAge());
+        this.employeeState.setMobileNo(employee.employeeState.getMobileNo());
+        this.employeeState.setAddressState(employee.getEmployeeState().getAddressState());
         return this.employeeState;
-
     }
 
 

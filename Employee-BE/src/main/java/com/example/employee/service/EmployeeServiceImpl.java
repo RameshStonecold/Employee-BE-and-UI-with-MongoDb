@@ -28,26 +28,22 @@ public class EmployeeServiceImpl implements IEmpService {
     public Either<Exception, EmployeeDto> getById(String id) {
 
         Employee employee = employeeRepo.getById(id);
-
-       EmployeeDto employeeDto= EmployeeDtoConverter.getInstance().empBeanToEmpDto(employee);
-
-       if (employeeDto==null){
-
-           return Either.left(new Exception("Employee not found"));
-       }
-         return Either.right(employeeDto);
+        if (employee.getEmployeeState()!=null){
+            EmployeeDto employeeDto= EmployeeDtoConverter.getInstance().empBeanToEmpDto(employee);
+            return Either.right(employeeDto);
+        }
+        return Either.left(new Exception("Employee not found"));
     }
 
     @Override
     public Either<Exception, String> createEmployee(EmployeeDto employeeDto) {
 
-         List<Employee> oldEmployeeList = EmployeeDtoConverter.getInstance().
-              empDtoListToEmpBeanList(this.findAllEmps());
         Employee employee = EmployeeDtoConverter.getInstance().empDtoToempBean(employeeDto);
         String encryptedPass= encoder.encode(employee.getEmployeeState().getPassword());
         employee.getEmployeeState().setPassword(encryptedPass);
 
-
+        List<Employee> oldEmployeeList = EmployeeDtoConverter.getInstance().
+                empDtoListToEmpBeanList(this.findAllEmps());
       if (oldEmployeeList.isEmpty()){
           EmployeeState employeeState = employee.create(employee);
          employeeRepo.saveEmployee(employeeState);
@@ -64,11 +60,12 @@ public class EmployeeServiceImpl implements IEmpService {
            employeeRepo.saveEmployee((EmployeeState) empEither.get());
            return Either.right(((EmployeeState) empEither.get()).getId());
        }
-        return Either.left(new Exception("Emp already exist"));
+        return Either.left(new Exception(empEither.getLeft().toString()));
     }
 
     @Override
     public List<EmployeeDto> findAllEmps() {
+
         return employeeRepo.getAllEmps();
     }
 }
