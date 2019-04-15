@@ -1,5 +1,7 @@
 package com.example.employee.model.dto;
 
+import com.example.employee.model.Address;
+import com.example.employee.model.AddressState;
 import com.example.employee.model.Employee;
 import com.example.employee.model.EmployeeState;
 import org.springframework.beans.BeanUtils;
@@ -19,10 +21,15 @@ public class EmployeeDtoConverter {
 
     public Employee empDtoToempBean(EmployeeDto employeeDto){
         EmployeeState employeeState = new EmployeeState();
-        if (employeeDto!=null)
-        {
+        if (employeeDto!=null) {
             BeanUtils.copyProperties(employeeDto,employeeState);
         }
+        AddressState addressState = new AddressState();
+        if (employeeDto.getAddressDto()!=null){
+            BeanUtils.copyProperties(employeeDto.getAddressDto(),addressState );
+           employeeState.setAddressState(addressState);
+        }
+
         return new Employee(employeeState);
     }
 
@@ -30,12 +37,15 @@ public class EmployeeDtoConverter {
 
     public EmployeeDto empBeanToEmpDto(Employee employee){
 
-        EmployeeState employeeState = new EmployeeState();
-
         EmployeeDto employeeDto = new EmployeeDto();
 
-        if (employee!=null){
+        if (employee.getEmployeeState()!=null){
             BeanUtils.copyProperties(employee.getEmployeeState(),employeeDto);
+        }
+        AddressDto addressDto = new AddressDto();
+        if (employee.getEmployeeState().getAddressState()!=null){
+            BeanUtils.copyProperties(employee.getEmployeeState().getAddressState(),addressDto);
+            employeeDto.setAddressDto(addressDto);
         }
         return employeeDto;
     }
@@ -46,9 +56,7 @@ public class EmployeeDtoConverter {
         List<EmployeeDto> employeeDtoList= new ArrayList<>();
 
         if (employeeList!=null){
-
             employeeList.forEach(x->employeeDtoList.add(empBeanToEmpDto(x)));
-
         }
         return employeeDtoList;
     }

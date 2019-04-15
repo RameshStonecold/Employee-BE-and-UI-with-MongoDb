@@ -16,7 +16,7 @@ public interface EmployeeRepo {
 
     List<EmployeeDto> getAllEmps();
 
-    Either<Exception, Employee> getById(String empId);
+     Employee getById(String empId);
 
 
 }

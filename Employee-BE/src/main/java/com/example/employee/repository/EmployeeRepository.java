@@ -30,19 +30,15 @@ public class EmployeeRepository implements EmployeeRepo {
 
       List<Employee> allEmps=  employeeJPARepository.findAll().
               stream().map(x-> new Employee(x)).collect(Collectors.toList());
-
         return EmployeeDtoConverter.getInstance().empBeanListToEmpDtoList(allEmps);
     }
 
     @Override
-    public Either<Exception, Employee> getById(String empId) {
+    public Employee getById(String empId) {
 
       EmployeeState employeeState= employeeJPARepository.findById_id(empId);
 
-       if (employeeState!=null){
+      return new Employee(employeeState);
 
-           return Either.right(new Employee(employeeState));
-       }
-        return Either.left(new Exception("Employee not found"));
     }
 }

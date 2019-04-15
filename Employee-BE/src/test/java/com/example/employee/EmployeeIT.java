@@ -1,6 +1,5 @@
 package com.example.employee;
 
-import com.example.employee.config.ResponseWithError;
 import com.example.employee.controller.EmployeeController;
 import com.example.employee.model.dto.EmployeeDto;
 import com.example.employee.service.IEmpService;
@@ -29,12 +28,12 @@ public class EmployeeIT {
     public void createEmployeeTest(){
 
         EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId("22345");
-        employeeDto.setUsername("Dronacharya");
+        employeeDto.setId("12345");
+        employeeDto.setUsername("Ramesh223");
         employeeDto.setPassword("password");
-        employeeDto.setEmailId("dronacharya@gmail.com");
-        employeeDto.setMobileNo("6179170688");
-        employeeDto.setAge("25");
+        employeeDto.setEmailId("rameshshaka@gmail.com");
+        employeeDto.setMobileNo("8179170688");
+        employeeDto.setAge("23");
 
        Either either= empService.createEmployee(employeeDto);
 
@@ -43,19 +42,19 @@ public class EmployeeIT {
 
     @Test
     public void getEmpById(){
-        String id ="12345";
-        ResponseWithError error= employeeController.getById(id);
-      Assert.assertNotNull(empService.getById(id));
+        String id ="1234";
+       Either either= empService.getById(id);
+      Assert.assertNotNull(either.get());
     }
 
 
-    @Test
+ /*   @Test
     public void getAllEmpsTest(){
 
        List<EmployeeDto> employeeDtoList= empService.findAllEmps();
 
        Assert.assertNotNull(employeeDtoList);
-    }
+    }*/
 
 
 
