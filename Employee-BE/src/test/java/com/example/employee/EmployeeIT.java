@@ -1,8 +1,9 @@
 package com.example.employee;
 
-import com.example.employee.controller.EmployeeController;
-import com.example.employee.model.dto.EmployeeDto;
-import com.example.employee.service.IEmpService;
+import com.example.employee.employee.controller.EmployeeController;
+import com.example.employee.employee.model.dto.EmployeeDto;
+import com.example.employee.employee.model.dto.ForgotPassword;
+import com.example.employee.employee.service.IEmpService;
 import io.vavr.control.Either;
 import org.junit.Assert;
 import org.junit.Test;
@@ -43,6 +44,17 @@ public class EmployeeIT {
         String id ="1234";
        Either either= empService.getById(id);
       Assert.assertNotNull(either.get());
+    }
+
+
+    @Test
+    public void updatepassword(){
+
+        ForgotPassword forgotPassword = new ForgotPassword();
+        forgotPassword.setMobileNumber("8179170688");
+        forgotPassword.setNewPassword("password123");
+        Either either =  empService.forgotPassword(forgotPassword);
+        Assert.assertTrue(either.isRight());
     }
 
 
