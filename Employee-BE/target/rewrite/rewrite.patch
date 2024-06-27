@@ -1,0 +1,130 @@
+diff --git a/Employee-BE/pom.xml b/Employee-BE/pom.xml
+index 30405bc..b786ca5 100644
+--- a/Employee-BE/pom.xml
++++ b/Employee-BE/pom.xml
+@@ -12,7 +12,7 @@ org.openrewrite.config.CompositeRecipe
+     <artifactId>Employee-BE</artifactId>
+ 
+     <properties>
+-        <java.version>1.8</java.version>
++        <java.version>17</java.version>
+     </properties>
+     <dependencies>
+         <dependency>
+@@ -56,6 +56,12 @@
+             <scope>runtime</scope>
+         </dependency>
+         <dependency>
++            <groupId>org.junit.jupiter</groupId>
++            <artifactId>junit-jupiter</artifactId>
++            <version>5.10.2</version>
++            <scope>test</scope>
++        </dependency>
++        <dependency>
+             <groupId>org.projectlombok</groupId>
+             <artifactId>lombok</artifactId>
+             <optional>true</optional>
+@@ -68,7 +74,7 @@
+         <dependency>
+             <groupId>org.springframework.security</groupId>
+             <artifactId>spring-security-crypto</artifactId>
+-            <version>5.1.3.RELEASE</version>
++            <version>6.2.5</version>
+         </dependency>
+     </dependencies>
+ <build>
+
+diff --git a/Employee-BE/src/main/java/com/example/employee/employee/controller/EmployeeController.java b/Employee-BE/src/main/java/com/example/employee/employee/controller/EmployeeController.java
+index ea87b50..5ba0fa5 100644
+--- a/Employee-BE/src/main/java/com/example/employee/employee/controller/EmployeeController.java
++++ b/Employee-BE/src/main/java/com/example/employee/employee/controller/EmployeeController.java
+@@ -22,7 +22,7 @@ org.openrewrite.config.CompositeRecipe
+     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+ 
+     @GetMapping("/getEmployee/{empId}")
+-    public ResponseWithError<EmployeeDto> getEmpById(@PathVariable("empId") String empId){
++    public ResponseWithError<EmployeeDto> getEmpById(@PathVariable String empId){
+         Either<Exception,EmployeeDto> empEither= iEmpService.getById(empId);
+         try {
+             if (empEither.isRight()){
+
+diff --git a/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeList.java b/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeList.java
+index 7cf81bc..af4f487 100644
+--- a/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeList.java
++++ b/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeList.java
+@@ -31,7 +31,7 @@ org.openrewrite.config.CompositeRecipe
+       Optional<Employee> employeeOptional= this.employeeList.stream().
+               filter(x->x.getEmployeeState().getId().
+                       compareTo(employeeState.getId())==0 ).findAny();
+-     if (!employeeOptional.isPresent())
++     if (employeeOptional.isEmpty())
+      {
+          return Either.right(employeeState);
+      }
+
+diff --git a/Employee-BE/src/test/java/com/example/employee/EmployeeTest.java b/Employee-BE/src/test/java/com/example/employee/EmployeeTest.java
+index 89b9e10..0d9b2c5 100644
+--- a/Employee-BE/src/test/java/com/example/employee/EmployeeTest.java
++++ b/Employee-BE/src/test/java/com/example/employee/EmployeeTest.java
+@@ -1,11 +1,8 @@ org.openrewrite.config.CompositeRecipe
+ package com.example.employee;
+ 
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
++import org.junit.jupiter.api.Test;
+ import org.springframework.boot.test.context.SpringBootTest;
+-import org.springframework.test.context.junit4.SpringRunner;
+ 
+-@RunWith(SpringRunner.class)
+ @SpringBootTest
+ public class EmployeeTest {
+ 
+
+diff --git a/Employee-BE/src/test/java/com/example/employee/EmployeeIT.java b/Employee-BE/src/test/java/com/example/employee/EmployeeIT.java
+index 97d6d0f..10587c8 100644
+--- a/Employee-BE/src/test/java/com/example/employee/EmployeeIT.java
++++ b/Employee-BE/src/test/java/com/example/employee/EmployeeIT.java
+@@ -5,14 +5,11 @@ org.openrewrite.config.CompositeRecipe
+ import com.example.employee.employee.model.dto.ForgotPassword;
+ import com.example.employee.employee.service.IEmpService;
+ import io.vavr.control.Either;
+-import org.junit.Assert;
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
++import org.junit.jupiter.api.Assertions;
++import org.junit.jupiter.api.Test;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.boot.test.context.SpringBootTest;
+-import org.springframework.test.context.junit4.SpringRunner;
+ 
+-@RunWith(SpringRunner.class)
+ @SpringBootTest
+ public class EmployeeIT {
+ 
+@@ -36,14 +33,14 @@
+ 
+        Either either= empService.createEmployee(employeeDto);
+ 
+-        Assert.assertEquals(true,either.isRight());
++        Assertions.assertEquals(true,either.isRight());
+     }
+ 
+     @Test
+     public void getEmpById(){
+         String id ="1234";
+        Either either= empService.getById(id);
+-      Assert.assertNotNull(either.get());
++      Assertions.assertNotNull(either.get());
+     }
+ 
+ 
+@@ -54,7 +51,7 @@
+         forgotPassword.setMobileNumber("8179170688");
+         forgotPassword.setNewPassword("password123");
+         Either either =  empService.forgotPassword(forgotPassword);
+-        Assert.assertTrue(either.isRight());
++        Assertions.assertTrue(either.isRight());
+     }
+ 
+ 
+
