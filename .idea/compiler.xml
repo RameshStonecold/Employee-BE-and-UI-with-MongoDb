@@ -10,7 +10,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Employee-BE" target="1.8" />
       <module name="Employee-BE-and-UI-with-MongoDb" target="1.8" />
     </bytecodeTargetLevel>
   </component>

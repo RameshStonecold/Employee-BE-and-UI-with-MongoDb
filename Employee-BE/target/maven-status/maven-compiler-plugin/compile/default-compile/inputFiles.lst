@@ -1,26 +1,26 @@
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/service/EmployeeServiceImpl.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/repository/EmployeeRepository.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpGenerator.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/AddressState.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/repository/OTPRepository.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/controller/EmployeeController.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/service/IOTPService.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/repository/EmployeeRepo.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/EmployeeDtoConverter.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/service/OTPServiceImpl.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/EmployeeDto.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/AddressDto.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpState.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/config/ResponseWithError.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/Address.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeState.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/twiliosms/SendingSms.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OTPType.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/repository/EmployeeJPARepository.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/ForgotPassword.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/EmployeeApplication.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/Employee.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpModel.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/service/IEmpService.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeList.java
-/home/synycs/Practice/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpStatus.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/service/EmployeeServiceImpl.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/repository/EmployeeRepo.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/Employee.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/twiliosms/SendingSms.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/AddressState.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/ForgotPassword.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeList.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/service/OTPServiceImpl.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/AddressDto.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpModel.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpStatus.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/repository/OTPRepository.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/EmployeeDto.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/EmployeeState.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/EmployeeApplication.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/dto/EmployeeDtoConverter.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/service/IOTPService.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpState.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/model/Address.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/repository/EmployeeJPARepository.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/repository/EmployeeRepository.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OTPType.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/service/IEmpService.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/controller/EmployeeController.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/otp/model/OtpGenerator.java
+/home/neosoft/Downloads/Ramesh Shakapurapu/clone-projects/Employee-BE-and-UI-with-MongoDb/Employee-BE/src/main/java/com/example/employee/employee/config/ResponseWithError.java

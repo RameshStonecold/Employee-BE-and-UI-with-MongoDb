@@ -7,6 +7,7 @@ import static org.springframework.boot.SpringApplication.run;
 @SpringBootApplication
 public class EmployeeApplication {
 
+
     public static void main(String[] args){
 
         run(EmployeeApplication.class,args);
